@@ -2,7 +2,7 @@ package codechicken.microblock
 
 import codechicken.lib.vec.{Cuboid6, Vector3}
 import net.minecraft.block.Block
-import codechicken.lib.render.{ColourMultiplier, CCRenderState}
+import codechicken.lib.render.CCRenderState
 import net.minecraft.block.BlockGrass
 import net.minecraft.init.Blocks
 import codechicken.lib.render.uv.{UVTranslation, IconTransformation}
@@ -17,7 +17,7 @@ class GrassMicroMaterial extends BlockMicroMaterial(Blocks.grass, 0) {
   }
 
   override def renderMicroFace(pos: Vector3, pass: Int, bounds: Cuboid6) {
-    val face = CCRenderState.model.asInstanceOf[BlockFace]
+    val face = CCRenderState.instance().model.asInstanceOf[BlockFace]
     if (pass != -1)
       face.computeLightCoords()
 
@@ -42,7 +42,7 @@ class GrassMicroMaterial extends BlockMicroMaterial(Blocks.grass, 0) {
 class TopMicroMaterial($block: Block, $meta: Int = 0)
     extends BlockMicroMaterial($block, $meta) {
   override def renderMicroFace(pos: Vector3, pass: Int, bounds: Cuboid6) {
-    val face = CCRenderState.model.asInstanceOf[BlockFace]
+    val face = CCRenderState.instance().model.asInstanceOf[BlockFace]
     if (face.side <= 1)
       MaterialRenderHelper
         .start(pos, pass, icont)

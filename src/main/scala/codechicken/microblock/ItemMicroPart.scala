@@ -170,17 +170,17 @@ object ItemMicroPartRenderer extends IItemRenderer {
       GL11.glScaled(0.5, 0.5, 0.5)
     if (t == ItemRenderType.INVENTORY || t == ItemRenderType.ENTITY)
       GL11.glTranslatef(-0.5f, -0.5f, -0.5f)
-
+    // TODO: update to use a thread local copy
     TextureUtils.bindAtlas(0)
-    CCRenderState.reset()
-    CCRenderState.useNormals = true
-    CCRenderState.pullLightmap()
-    CCRenderState.startDrawing()
+    CCRenderState.instance().reset()
+    CCRenderState.instance().useNormals = true
+    CCRenderState.instance().pullLightmap()
+    CCRenderState.instance().startDrawing()
     val part =
       mcrClass.create(true, getMaterialID(item)).asInstanceOf[MicroblockClient]
     part.setShape(size, mcrClass.itemSlot)
     part.render(new Vector3(0.5, 0.5, 0.5).subtract(part.getBounds.center), -1)
-    CCRenderState.draw()
+    CCRenderState.instance().draw()
     GL11.glPopMatrix()
   }
 

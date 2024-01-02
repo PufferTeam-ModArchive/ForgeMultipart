@@ -14,7 +14,6 @@ import Vector3._
 import codechicken.lib.raytracer.IndexedCuboid6
 import org.lwjgl.opengl.GL11
 import codechicken.lib.render.uv.IconTransformation
-import codechicken.lib.lighting.LightMatrix
 
 object HollowPlacement extends PlacementProperties {
   object HollowPlacementGrid extends FaceEdgeGrid(3 / 8d)
@@ -74,11 +73,13 @@ trait HollowMicroblockClient
   }
 
   override def drawBreaking(renderBlocks: RenderBlocks) {
-    CCRenderState.reset()
-    CCRenderState.setPipeline(
-      new Translation(x, y, z),
-      new IconTransformation(renderBlocks.overrideBlockTexture)
-    )
+    CCRenderState.instance().reset()
+    CCRenderState
+      .instance()
+      .setPipeline(
+        new Translation(x, y, z),
+        new IconTransformation(renderBlocks.overrideBlockTexture)
+      )
     renderHollow(
       null,
       0,

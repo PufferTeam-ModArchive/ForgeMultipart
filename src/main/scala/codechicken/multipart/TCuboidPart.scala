@@ -31,11 +31,13 @@ trait TCuboidPart extends TMultiPart {
 
   @SideOnly(Side.CLIENT)
   override def drawBreaking(renderBlocks: RenderBlocks) {
-    CCRenderState.reset()
-    CCRenderState.setPipeline(
-      new Translation(x, y, z),
-      new IconTransformation(renderBlocks.overrideBlockTexture)
-    )
+    CCRenderState.instance().reset()
+    CCRenderState
+      .instance()
+      .setPipeline(
+        new Translation(x, y, z),
+        new IconTransformation(renderBlocks.overrideBlockTexture)
+      )
     BlockRenderer.renderCuboid(getBounds, 0)
   }
 }
