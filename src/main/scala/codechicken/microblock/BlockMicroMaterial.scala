@@ -24,7 +24,6 @@ object MaterialRenderHelper {
 
   def start(pos: Vector3, pass: Int, uvt: UVTransformation) = {
     this.pass = pass
-    // TODO: update to use a thread local copy
     builder = CCRenderState.instance().pipeline.builder()
     builder.add(pos.translation()).add(uvt)
     this
@@ -86,9 +85,10 @@ class BlockMicroMaterial(val block: Block, val meta: Int = 0)
     if (pass == -1)
       block.getBlockColor << 8 | 0xff
     else {
-      val pos = CCRenderState.instance().lightMatrix.pos
+      val state = CCRenderState.instance
+      val pos = state.lightMatrix.pos
       block.colorMultiplier(
-        CCRenderState.instance().lightMatrix.access,
+        state.lightMatrix.access,
         pos.x,
         pos.y,
         pos.z

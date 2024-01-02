@@ -73,10 +73,9 @@ trait HollowMicroblockClient
   }
 
   override def drawBreaking(renderBlocks: RenderBlocks) {
-    CCRenderState.instance().reset()
-    CCRenderState
-      .instance()
-      .setPipeline(
+    val state = CCRenderState.instance
+    state.reset()
+    state.setPipeline(
         new Translation(x, y, z),
         new IconTransformation(renderBlocks.overrideBlockTexture)
       )
