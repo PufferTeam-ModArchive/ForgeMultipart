@@ -36,9 +36,10 @@ object MultipartRenderer
     if (tmpart.partList.isEmpty)
       return
 
-    CCRenderState.instance().reset()
-    CCRenderState.instance().pullLightmap()
-    CCRenderState.instance().useNormals = true
+    val state = CCRenderState.instance
+    state.reset()
+    state.pullLightmap()
+    state.useNormals = true
 
     val pos = new Vector3(x, y, z)
     tmpart.renderDynamic(pos, f, pass)
@@ -81,8 +82,9 @@ object MultipartRenderer
       return false
     }
 
-    CCRenderState.instance().reset()
-    CCRenderState.instance().lightMatrix.locate(world, x, y, z)
+    val state = CCRenderState.instance
+    state.reset()
+    state.lightMatrix.locate(world, x, y, z)
     return tmpart.renderStatic(new Vector3(x, y, z), pass)
   }
 

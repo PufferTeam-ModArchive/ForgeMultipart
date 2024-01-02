@@ -76,9 +76,9 @@ trait HollowMicroblockClient
     val state = CCRenderState.instance
     state.reset()
     state.setPipeline(
-        new Translation(x, y, z),
-        new IconTransformation(renderBlocks.overrideBlockTexture)
-      )
+      new Translation(x, y, z),
+      new IconTransformation(renderBlocks.overrideBlockTexture)
+    )
     renderHollow(
       null,
       0,

@@ -112,17 +112,17 @@ object ItemSawRenderer extends IItemRenderer {
         )
       case _ => return
     }
-    // TODO: update to use a thread local copy
-    CCRenderState.instance().reset()
-    CCRenderState.instance().useNormals = true
-    CCRenderState.instance().pullLightmap()
+    val state = CCRenderState.instance
+    state.reset()
+    state.useNormals = true
+    state.pullLightmap()
     CCRenderState.changeTexture("microblock:textures/items/saw.png")
-    CCRenderState.instance().startDrawing()
+    state.startDrawing()
     handle.render(t)
     holder.render(t)
-    CCRenderState.instance().draw()
+    state.draw()
     GL11.glDisable(GL11.GL_CULL_FACE)
-    CCRenderState.instance().startDrawing()
+    state.startDrawing()
     blade.render(
       t,
       new UVTranslation(
@@ -130,7 +130,7 @@ object ItemSawRenderer extends IItemRenderer {
         (item.getItem.asInstanceOf[Saw].getCuttingStrength(item) - 1) * 4 / 64d
       )
     )
-    CCRenderState.instance().draw()
+    state.draw()
     GL11.glEnable(GL11.GL_CULL_FACE)
   }
 }
