@@ -31,6 +31,7 @@ object MicroblockRender {
       return
     val pos = placement.pos
     val part = placement.part.asInstanceOf[MicroblockClient]
+    val state = CCRenderState.instance
 
     glPushMatrix()
     glTranslated(pos.x + 0.5, pos.y + 0.5, pos.z + 0.5)
@@ -40,14 +41,14 @@ object MicroblockRender {
     glEnable(GL_BLEND)
     glDepthMask(false)
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
-
+    // TODO: update to use a thread local copy
     TextureUtils.bindAtlas(0)
-    CCRenderState.reset()
-    CCRenderState.alphaOverride = 80
-    CCRenderState.useNormals = true
-    CCRenderState.startDrawing()
+    state.reset()
+    state.alphaOverride = 80
+    state.useNormals = true
+    state.startDrawing()
     part.render(Vector3.zero, -1)
-    CCRenderState.draw()
+    state.draw()
 
     glDisable(GL_BLEND)
     glDepthMask(true)
@@ -62,7 +63,7 @@ object MicroblockRender {
       c: Cuboid6,
       faces: Int
   ) {
-    CCRenderState.setModel(face)
+    CCRenderState.instance().setModel(face)
     for (s <- 0 until 6 if (faces & 1 << s) == 0) {
       face.loadCuboidFace(c, s)
       mat.renderMicroFace(pos, pass, c)

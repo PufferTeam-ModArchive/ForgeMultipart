@@ -31,8 +31,9 @@ trait TCuboidPart extends TMultiPart {
 
   @SideOnly(Side.CLIENT)
   override def drawBreaking(renderBlocks: RenderBlocks) {
-    CCRenderState.reset()
-    CCRenderState.setPipeline(
+    val state = CCRenderState.instance
+    state.reset()
+    state.setPipeline(
       new Translation(x, y, z),
       new IconTransformation(renderBlocks.overrideBlockTexture)
     )
