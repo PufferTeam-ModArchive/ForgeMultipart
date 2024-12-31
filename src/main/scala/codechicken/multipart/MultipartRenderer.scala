@@ -37,8 +37,8 @@ object MultipartRenderer
       return
 
     val state = CCRenderState.instance
-    state.reset()
-    state.pullLightmap()
+    state.resetInstance()
+    state.pullLightmapInstance()
     state.useNormals = true
 
     val pos = new Vector3(x, y, z)
@@ -83,7 +83,7 @@ object MultipartRenderer
     }
 
     val state = CCRenderState.instance
-    state.reset()
+    state.resetInstance()
     state.lightMatrix.locate(world, x, y, z)
     return tmpart.renderStatic(new Vector3(x, y, z), pass)
   }

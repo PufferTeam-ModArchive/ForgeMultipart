@@ -44,12 +44,12 @@ object MicroblockRender {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
     // TODO: update to use a thread local copy
     TextureUtils.bindAtlas(0)
-    state.reset()
+    state.resetInstance()
     state.alphaOverride = 80
     state.useNormals = true
-    state.startDrawing()
+    state.startDrawingInstance()
     part.render(Vector3.zero, -1)
-    state.draw()
+    state.drawInstance()
 
     glDisable(GL_BLEND)
     glDepthMask(true)
@@ -67,7 +67,7 @@ object MicroblockRender {
       faces: Int
   ) {
     val localFace = face.get()
-    CCRenderState.instance().setModel(localFace)
+    CCRenderState.instance().setModelInstance(localFace)
     for (s <- 0 until 6 if (faces & 1 << s) == 0) {
       localFace.loadCuboidFace(c, s)
       mat.renderMicroFace(pos, pass, c)

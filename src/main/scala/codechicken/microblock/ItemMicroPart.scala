@@ -172,15 +172,15 @@ object ItemMicroPartRenderer extends IItemRenderer {
       GL11.glTranslatef(-0.5f, -0.5f, -0.5f)
     TextureUtils.bindAtlas(0)
     val state = CCRenderState.instance
-    state.reset()
+    state.resetInstance()
     state.useNormals = true
-    state.pullLightmap()
-    state.startDrawing()
+    state.pullLightmapInstance()
+    state.startDrawingInstance()
     val part =
       mcrClass.create(true, getMaterialID(item)).asInstanceOf[MicroblockClient]
     part.setShape(size, mcrClass.itemSlot)
     part.render(new Vector3(0.5, 0.5, 0.5).subtract(part.getBounds.center), -1)
-    state.draw()
+    state.drawInstance()
     GL11.glPopMatrix()
   }
 

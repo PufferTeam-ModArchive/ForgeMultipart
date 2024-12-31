@@ -113,16 +113,16 @@ object ItemSawRenderer extends IItemRenderer {
       case _ => return
     }
     val state = CCRenderState.instance
-    state.reset()
+    state.resetInstance()
     state.useNormals = true
-    state.pullLightmap()
+    state.pullLightmapInstance()
     CCRenderState.changeTexture("microblock:textures/items/saw.png")
-    state.startDrawing()
+    state.startDrawingInstance()
     handle.render(t)
     holder.render(t)
-    state.draw()
+    state.drawInstance()
     GL11.glDisable(GL11.GL_CULL_FACE)
-    state.startDrawing()
+    state.startDrawingInstance()
     blade.render(
       t,
       new UVTranslation(
@@ -130,7 +130,7 @@ object ItemSawRenderer extends IItemRenderer {
         (item.getItem.asInstanceOf[Saw].getCuttingStrength(item) - 1) * 4 / 64d
       )
     )
-    state.draw()
+    state.drawInstance()
     GL11.glEnable(GL11.GL_CULL_FACE)
   }
 }
