@@ -38,6 +38,7 @@ object ControlKeyHandler
     ) {
   import ControlKeyModifer._
   var wasPressed = false
+  var oldPlayer: EntityPlayer = null
 
   @SubscribeEvent
   @SideOnly(Side.CLIENT)
@@ -51,6 +52,14 @@ object ControlKeyHandler
         packet.writeBoolean(pressed)
         packet.sendToServer()
       }
+    }
+    if (oldPlayer != null) {
+      if (oldPlayer != Minecraft.getMinecraft.thePlayer) {
+        map.remove(oldPlayer)
+        oldPlayer = Minecraft.getMinecraft.thePlayer
+      }
+    } else {
+      oldPlayer = Minecraft.getMinecraft.thePlayer
     }
   }
 }
