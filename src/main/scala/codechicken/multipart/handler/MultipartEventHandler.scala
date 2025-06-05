@@ -30,8 +30,11 @@ object MultipartEventHandler {
   @SubscribeEvent
   def worldUnLoad(event: WorldEvent.Unload) {
     MultipartSPH.onWorldUnload(event.world)
-    if (event.world.isRemote)
+    if (event.world.isRemote) {
       TileCache.clear()
+    } else {
+      MultipartSaveLoad.loadingWorld = null
+    }
   }
 
   @SubscribeEvent

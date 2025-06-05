@@ -7,13 +7,16 @@ import net.minecraft.world.chunk.Chunk
 import net.minecraft.world.ChunkPosition
 import codechicken.multipart.{MultipartHelper, TileMultipart}
 import codechicken.lib.asm.ObfMapping
+import net.minecraft.world.World
 import scala.collection.mutable
 import codechicken.multipart.MultipartHelper.IPartTileConverter
 import scala.collection.JavaConversions._
 
-/** Hack due to lack of TileEntityLoadEvent in forge */
+/** Hack due to lack of TileEntityLoadEvent in forge
+  */
 object MultipartSaveLoad {
   val converters = mutable.MutableList[IPartTileConverter[_]]()
+  var loadingWorld: World = _
 
   class TileNBTContainer extends TileEntity {
     var tag: NBTTagCompound = _
@@ -56,6 +59,7 @@ object MultipartSaveLoad {
   }
 
   def loadTiles(chunk: Chunk) {
+    loadingWorld = chunk.worldObj
     val iterator = chunk.chunkTileEntityMap
       .asInstanceOf[Map[ChunkPosition, TileEntity]]
       .entrySet
