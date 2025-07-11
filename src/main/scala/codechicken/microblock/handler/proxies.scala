@@ -33,6 +33,7 @@ class MicroblockProxy_serverImpl {
   var sawBronze: Item = _
   var sawIron: Item = _
   var sawThaumium: Item = _
+  var sawManasteel: Item = _
   var sawGold: Item = _
   var sawSteel: Item = _
   var sawOsmium: Item = _
@@ -50,6 +51,7 @@ class MicroblockProxy_serverImpl {
     sawBronze = createSaw(config, "sawBronze", 2)
     sawIron = createSaw(config, "sawIron", 2)
     sawThaumium = createSaw(config, "sawThaumium", 2)
+    sawManasteel = createSaw(config, "sawManasteel", 2)
     sawGold = createSaw(config, "sawGold", 1)
     sawDiamond = createSaw(config, "sawDiamond", 3)
     sawSteel = createSaw(config, "sawSteel", 3)
