@@ -29,7 +29,13 @@ class MicroblockProxy_serverImpl {
 
   var itemMicro: ItemMicroPart = _
   var sawStone: Item = _
+  var sawFlint: Item = _
+  var sawBronze: Item = _
   var sawIron: Item = _
+  var sawThaumium: Item = _
+  var sawGold: Item = _
+  var sawSteel: Item = _
+  var sawOsmium: Item = _
   var sawDiamond: Item = _
   var stoneRod: Item = _
 
@@ -40,8 +46,14 @@ class MicroblockProxy_serverImpl {
     itemMicro = new ItemMicroPart
     GameRegistry.registerItem(itemMicro, "microblock")
     sawStone = createSaw(config, "sawStone", 1)
+    sawFlint = createSaw(config, "sawFlint", 1)
+    sawBronze = createSaw(config, "sawBronze", 2)
     sawIron = createSaw(config, "sawIron", 2)
+    sawThaumium = createSaw(config, "sawThaumium", 2)
+    sawGold = createSaw(config, "sawGold", 1)
     sawDiamond = createSaw(config, "sawDiamond", 3)
+    sawSteel = createSaw(config, "sawSteel", 3)
+    sawOsmium = createSaw(config, "sawOsmium", 3)
     stoneRod = new Item()
       .setUnlocalizedName("microblock:stoneRod")
       .setTextureName("microblock:stoneRod")

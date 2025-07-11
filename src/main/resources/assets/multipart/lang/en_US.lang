@@ -2,7 +2,13 @@ microblock.missing=The following microblocks are not installed on this client: %
 multipart.missing=The following multiparts are not installed on this client: %s
 
 item.microblock:sawStone.name=Stone Saw
+item.microblock:sawFlint.name=Flint Saw
+item.microblock:sawBronze.name=Bronze Saw
 item.microblock:sawIron.name=Iron Saw
+item.microblock:sawGold.name=Gold Saw
+item.microblock:sawSteel.name=Steel Saw
+item.microblock:sawThaumium.name=Thaumium Saw
+item.microblock:sawOsmium.name=Osmium Saw
 item.microblock:sawDiamond.name=Diamond Saw
 item.microblock:stoneRod.name=Stone Rod
 
