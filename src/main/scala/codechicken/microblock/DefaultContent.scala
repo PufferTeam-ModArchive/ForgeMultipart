@@ -16,8 +16,6 @@ object DefaultContent {
     createAndRegister(dirt, 0 to 2)
     createAndRegister(cobblestone)
     createAndRegister(planks, 0 to 5)
-    createAndRegister(log, 0 to 3)
-    createAndRegister(log2, 0 to 1, "tile.log2")
     createAndRegister(leaves, 0 to 3)
     createAndRegister(leaves2, 0 to 1, "tile.leaves2")
     createAndRegister(sponge)
